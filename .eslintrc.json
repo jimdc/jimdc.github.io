@@ -1,0 +1,7 @@
+{
+    "extends": ["standard", "standard-react"],
+    "rules": {
+    	"react/prop-types": "off",
+      "jsx-quotes": "prefer-double"
+    }
+}
