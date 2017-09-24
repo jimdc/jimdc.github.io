@@ -1,5 +1,6 @@
 import React from 'react'
 import Link from 'gatsby-link'
+
 import VerticalMargin from '../components/VerticalMargin'
 import FontAwesome from '../components/FontAwesome'
 import splash from './splash.jpg'
@@ -40,12 +41,10 @@ const Splash = () => (
 )
 
 const About = () => (
-  <div>
-    <p>
-    Find me on GitHub, VSCO, Spotify and Medium, or<br/>
-    reach out via email. 🌝
-    </p>
-  </div>
+  <p>
+  Find me on GitHub, VSCO, Spotify and Medium, or<br/>
+  reach out via email. 🌝
+  </p>
 )
 
 const socialMediaInfo = Object.keys(metadata.socialMedia).map(key => {
@@ -95,7 +94,7 @@ const Bar = () => (
 
 const IndexPage = () => (
   <main>
-    <VerticalMargin top="12rem">
+    <VerticalMargin top={rhythm(6)}>
       <Header />
     </VerticalMargin>
     <Splash />
