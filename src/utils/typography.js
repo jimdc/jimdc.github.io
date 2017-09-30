@@ -1,6 +1,16 @@
-import Typography from "typography"
+import Typography from 'typography'
 
-const fontStack = ['Overpass', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'Fira Sans', 'Cantarell', 'Ubuntu', 'sans-serif']
+const fontStack = [
+  'Overpass',
+  '-apple-system',
+  'BlinkMacSystemFont',
+  'Segoe UI',
+  'Roboto',
+  'Fira Sans',
+  'Cantarell',
+  'Ubuntu',
+  'sans-serif',
+]
 
 const typography = new Typography({
   title: 'kbrgl',
@@ -9,12 +19,7 @@ const typography = new Typography({
   googleFonts: [
     {
       name: 'Overpass',
-      styles: [
-        '400',
-        '400i',
-        '700',
-        '700i',
-      ],
+      styles: ['400', '400i', '700', '700i'],
     },
   ],
   headerColor: '#000',

@@ -8,9 +8,7 @@ import './index.css'
 
 const TemplateWrapper = ({ children }) => (
   <div>
-    <Helmet
-      title={metadata.title}
-    />
+    <Helmet title={metadata.title} />
     <div
       style={{
         margin: '0 auto',

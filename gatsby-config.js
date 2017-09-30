@@ -1,6 +1,6 @@
 module.exports = {
   siteMetadata: {
-    ...require('./metadata')
+    ...require('./metadata'),
   },
   plugins: [
     `gatsby-plugin-react-helmet`,
@@ -13,7 +13,7 @@ module.exports = {
     {
       resolve: `gatsby-plugin-google-analytics`,
       options: {
-        trackingId: `UA-74242254-3`
+        trackingId: `UA-74242254-3`,
       },
     },
   ],

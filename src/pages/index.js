@@ -29,34 +29,35 @@ class Header extends React.Component {
     return (
       <h1>
         <Link to="/">
-          Kabir Goel <span style={{ fontWeight: 'lighter' }}>&mdash; designer & developer. {isToday(birthday) ? '🎉' : ''}</span>
+          Kabir Goel{' '}
+          <span style={{ fontWeight: 'lighter' }}>
+            &mdash; designer & developer. {isToday(birthday) ? '🎉' : ''}
+          </span>
         </Link>
       </h1>
     )
   }
 }
 
-const Splash = () => (
-  <img style={{ margin: 0 }} src={splash} alt="" />
-)
+const Splash = () => <img style={{ margin: 0 }} src={splash} alt="" />
 
 const About = () => (
   <p>
-  Find me on GitHub, VSCO, Spotify and Medium, or<br/>
-  reach out via email. 🌝
+    Find me on GitHub, VSCO, Spotify and Medium, or<br />
+    reach out via email. 🌝
   </p>
 )
 
 const socialMediaInfo = Object.keys(metadata.socialMedia).map(key => {
   let info = {
     _name: key,
-    ...metadata.socialMedia[key]
+    ...metadata.socialMedia[key],
   }
   return info
 })
 
 const Social = () => {
-  const socialIcons = socialMediaInfo.map((info) => {
+  const socialIcons = socialMediaInfo.map(info => {
     return (
       <a href={info.url}>
         <FontAwesome icon={info.icon ? info.icon : info._name} />
@@ -65,18 +66,21 @@ const Social = () => {
   })
 
   return (
-    <ul style={{
-      listStyleType: 'none',
-      margin: 0,
-      color: typography.options.headerColor,
-    }}>
+    <ul
+      style={{
+        listStyleType: 'none',
+        margin: 0,
+        color: typography.options.headerColor,
+      }}
+    >
       {socialIcons.map((icon, index) => (
         <li
           key={index}
           style={{
             display: 'inline-block',
             marginRight: '10px',
-          }}>
+          }}
+        >
           {icon}
         </li>
       ))}
@@ -85,11 +89,13 @@ const Social = () => {
 }
 
 const Bar = () => (
-  <div style={{
-    width: 100,
-    height: 1,
-    backgroundColor: typography.options.bodyColor,
-  }} />
+  <div
+    style={{
+      width: 100,
+      height: 1,
+      backgroundColor: typography.options.bodyColor,
+    }}
+  />
 )
 
 const IndexPage = () => (
