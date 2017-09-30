@@ -1,19 +1,21 @@
+const metadata = require('./metadata')
+
 module.exports = {
   siteMetadata: {
-    ...require('./metadata'),
+    ...metadata,
   },
   plugins: [
-    `gatsby-plugin-react-helmet`,
+    'gatsby-plugin-react-helmet',
     {
-      resolve: `gatsby-plugin-typography`,
+      resolve: 'gatsby-plugin-typography',
       options: {
-        pathToConfigModule: `src/utils/typography.js`,
+        pathToConfigModule: 'src/utils/typography.js',
       },
     },
     {
-      resolve: `gatsby-plugin-google-analytics`,
+      resolve: 'gatsby-plugin-google-analytics',
       options: {
-        trackingId: `UA-74242254-3`,
+        trackingId: 'UA-74242254-3',
       },
     },
   ],

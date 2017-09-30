@@ -8,7 +8,10 @@
     "gatsby-link": "^1.6.15",
     "gatsby-plugin-google-analytics": "^1.0.7",
     "gatsby-plugin-react-helmet": "^1.0.5",
-    "gatsby-plugin-typography": "^1.7.9"
+    "gatsby-plugin-typography": "^1.7.9",
+    "prop-types": "^15.6.0",
+    "react": "^16.0.0",
+    "react-helmet": "^5.2.0"
   },
   "keywords": [
     "gatsby"
@@ -23,7 +26,14 @@
     "deploy": "gatsby build && gh-pages --dist public --branch master"
   },
   "devDependencies": {
+    "eslint": "^4.8.0",
+    "eslint-config-airbnb": "^15.1.0",
+    "eslint-config-prettier": "^2.6.0",
+    "eslint-plugin-import": "^2.7.0",
+    "eslint-plugin-jsx-a11y": "^5.1.1",
+    "eslint-plugin-react": "^7.4.0",
     "gh-pages": "^1.0.0",
     "prettier": "^1.6.1"
-  }
+  },
+  "repository": "https://github.com/kbrgl/kbrgl.github.io.git"
 }

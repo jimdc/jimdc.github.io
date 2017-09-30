@@ -20,4 +20,10 @@ VerticalMargin.propTypes = {
   top: cssUnitType,
 }
 
+VerticalMargin.defaultProps = {
+  children: [],
+  bottom: 0,
+  top: 0,
+}
+
 export default VerticalMargin

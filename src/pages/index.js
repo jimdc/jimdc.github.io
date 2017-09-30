@@ -6,38 +6,36 @@ import FontAwesome from '../components/FontAwesome'
 import splash from './splash.jpg'
 import metadata from '../../metadata'
 import typography from '../utils/typography'
+
 const { rhythm } = typography
 
 const birthday = new Date(1016908200000)
-function isToday(date, today) {
+function isToday(date, _today) {
+  let today = _today
   if (today === undefined) {
     today = new Date()
   }
-  let isToday = false
+  let res = false
   const m = today.getMonth() - date.getMonth()
   if (m === 0) {
     const d = today.getDate() - date.getDate()
     if (d === 0) {
-      isToday = true
+      res = true
     }
   }
-  return isToday
+  return res
 }
 
-class Header extends React.Component {
-  render() {
-    return (
-      <h1>
-        <Link to="/">
-          Kabir Goel{' '}
-          <span style={{ fontWeight: 'lighter' }}>
-            &mdash; designer & developer. {isToday(birthday) ? '🎉' : ''}
-          </span>
-        </Link>
-      </h1>
-    )
-  }
-}
+const Header = () => (
+  <h1>
+    <Link to="/">
+      Kabir Goel{' '}
+      <span style={{ fontWeight: 'lighter' }}>
+        &mdash; designer & developer. {isToday(birthday) ? '🎉' : ''}
+      </span>
+    </Link>
+  </h1>
+)
 
 const Splash = () => <img style={{ margin: 0 }} src={splash} alt="" />
 
@@ -49,21 +47,27 @@ const About = () => (
 )
 
 const socialMediaInfo = Object.keys(metadata.socialMedia).map(key => {
-  let info = {
-    _name: key,
+  const info = {
+    name: key,
     ...metadata.socialMedia[key],
   }
   return info
 })
 
 const Social = () => {
-  const socialIcons = socialMediaInfo.map(info => {
-    return (
+  const socialIcons = socialMediaInfo.map(info => (
+    <li
+      key={info.name}
+      style={{
+        display: 'inline-block',
+        marginRight: '10px',
+      }}
+    >
       <a href={info.url}>
-        <FontAwesome icon={info.icon ? info.icon : info._name} />
+        <FontAwesome icon={info.icon ? info.icon : info.name} />
       </a>
-    )
-  })
+    </li>
+  ))
 
   return (
     <ul
@@ -73,17 +77,7 @@ const Social = () => {
         color: typography.options.headerColor,
       }}
     >
-      {socialIcons.map((icon, index) => (
-        <li
-          key={index}
-          style={{
-            display: 'inline-block',
-            marginRight: '10px',
-          }}
-        >
-          {icon}
-        </li>
-      ))}
+      {socialIcons}
     </ul>
   )
 }
@@ -99,7 +93,7 @@ const Bar = () => (
 )
 
 const IndexPage = () => (
-  <main>
+  <div>
     <VerticalMargin top={rhythm(6)}>
       <Header />
     </VerticalMargin>
@@ -111,7 +105,7 @@ const IndexPage = () => (
     <VerticalMargin top={rhythm(1.5)}>
       <Bar />
     </VerticalMargin>
-  </main>
+  </div>
 )
 
 export default IndexPage

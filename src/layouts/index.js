@@ -1,6 +1,5 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import Link from 'gatsby-link'
 import Helmet from 'react-helmet'
 import metadata from '../../metadata'
 
@@ -16,13 +15,17 @@ const TemplateWrapper = ({ children }) => (
         padding: '0px 1.0875rem 1.45rem',
       }}
     >
-      {children()}
+      <main>{children()}</main>
     </div>
   </div>
 )
 
 TemplateWrapper.propTypes = {
   children: PropTypes.func,
+}
+
+TemplateWrapper.defaultProps = {
+  children: () => {},
 }
 
 export default TemplateWrapper
