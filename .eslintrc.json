@@ -2,6 +2,6 @@
     "extends": ["standard", "standard-react"],
     "rules": {
     	"react/prop-types": "off",
-      "jsx-quotes": "prefer-double"
+      "jsx-quotes": ["error", "prefer-double"]
     }
 }
