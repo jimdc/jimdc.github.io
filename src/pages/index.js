@@ -2,6 +2,7 @@ import React from 'react'
 import Link from 'gatsby-link'
 
 import VerticalMargin from '../components/VerticalMargin'
+import Container from '../components/Container'
 import FontAwesome from '../components/FontAwesome'
 import splash from './splash.jpg'
 import metadata from '../../metadata'
@@ -31,18 +32,26 @@ const Header = () => (
     <Link to="/">
       Kabir Goel{' '}
       <span style={{ fontWeight: 'lighter' }}>
-        &mdash; designer & developer. {isToday(birthday) ? '🎉' : ''}
+        &mdash; designer &amp; developer. {isToday(birthday) ? '🎉' : ''}
       </span>
     </Link>
   </h1>
 )
 
-const Splash = () => <img style={{ margin: 0 }} src={splash} alt="" />
+const Splash = () => (
+  <img
+    style={{ margin: 0, width: '100%', height: 'auto' }}
+    src={splash}
+    alt=""
+  />
+)
 
 const About = () => (
   <p>
-    Find me on GitHub, VSCO, Spotify and Medium, or<br />
-    reach out via email. 🌝
+    Find me on VSCO or Medium, or take a look at<br />
+    <Link to="/showcase" className="link--styled">
+      the design &amp; photography showcase
+    </Link>. 🌝
   </p>
 )
 
@@ -93,7 +102,7 @@ const Bar = () => (
 )
 
 const IndexPage = () => (
-  <div>
+  <Container maxWidth={512}>
     <VerticalMargin top={rhythm(6)}>
       <Header />
     </VerticalMargin>
@@ -105,7 +114,7 @@ const IndexPage = () => (
     <VerticalMargin top={rhythm(1.5)}>
       <Bar />
     </VerticalMargin>
-  </div>
+  </Container>
 )
 
 export default IndexPage

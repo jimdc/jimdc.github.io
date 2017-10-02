@@ -8,20 +8,15 @@ import './index.css'
 const TemplateWrapper = ({ children }) => (
   <div>
     <Helmet title={metadata.title} />
-    <div
-      style={{
-        margin: '0 auto',
-        maxWidth: 512,
-        padding: '0px 1.0875rem 1.45rem',
-      }}
-    >
-      <main>{children()}</main>
-    </div>
+    <main>{children()}</main>
   </div>
 )
 
 TemplateWrapper.propTypes = {
   children: PropTypes.func,
+  location: PropTypes.shape({
+    pathname: PropTypes.string,
+  }).isRequired,
 }
 
 TemplateWrapper.defaultProps = {

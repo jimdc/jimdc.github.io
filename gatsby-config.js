@@ -18,5 +18,14 @@ module.exports = {
         trackingId: 'UA-74242254-3',
       },
     },
+    {
+      resolve: 'gatsby-source-filesystem',
+      options: {
+        name: 'images',
+        path: `${__dirname}/src/pages/showcase/data/images/`,
+      },
+    },
+    'gatsby-transformer-sharp',
+    'gatsby-plugin-sharp',
   ],
 }

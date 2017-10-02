@@ -1,0 +1,212 @@
+import React from 'react'
+import Link from 'gatsby-link'
+import PropTypes from 'prop-types'
+import _ from 'lodash'
+import Waypoint from 'react-waypoint'
+
+import VerticalMargin from '../../components/VerticalMargin'
+import Container from '../../components/Container'
+import typography from '../../utils/typography'
+
+const { rhythm } = typography
+
+const Header = () => (
+  <h1 style={{ margin: 0 }}>
+    <Link to="/">
+      Kabir Goel{' '}
+      <span style={{ fontWeight: 'lighter' }}>
+        &mdash; design &amp; photography showcase.
+      </span>
+    </Link>
+  </h1>
+)
+
+const About = () => (
+  <div>
+    <p style={{ margin: 0 }}>
+      A gallery of my best shots. {' '}
+      <span style={{ color: '#888' }}>© {new Date().getFullYear()}</span>
+    </p>
+  </div>
+)
+
+const imageType = {
+  base64: PropTypes.string,
+  width: PropTypes.number,
+  height: PropTypes.number,
+  srcSet: PropTypes.string,
+  originalName: PropTypes.string,
+  aspectRatio: PropTypes.number,
+}
+
+class Image extends React.Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      imagePaddingBottom: 0,
+      imageURL: _.last(this.props.data.srcSet.split('\n')).split(' ')[0],
+      imageLoaded: false,
+      beginImageLoad: false,
+    }
+    this.onImageLoad = this.onImageLoad.bind(this)
+    this.beginImageLoad = this.beginImageLoad.bind(this)
+    this.calculatePadding = _.debounce(this.calculatePadding.bind(this), 100, {
+      leading: true,
+    })
+  }
+
+  componentDidMount() {
+    this.calculatePadding()
+    window.addEventListener('resize', this.calculatePadding)
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener('resize', this.calculatePadding)
+  }
+
+  onImageLoad() {
+    this.setState({
+      imageLoaded: true,
+    })
+  }
+
+  beginImageLoad() {
+    this.setState({
+      beginImageLoad: true,
+    })
+  }
+
+  calculatePadding() {
+    this.setState({
+      imagePaddingBottom: this.imgDiv.clientWidth / this.props.data.aspectRatio,
+    })
+  }
+
+  render() {
+    return (
+      <div>
+        <Waypoint onEnter={this.beginImageLoad} />
+        {/* this div is for defined edges with blur */}
+        <div
+          style={{
+            transform: 'translate3d(0, 0, 0)',
+            overflow: 'hidden',
+            marginBottom: rhythm(1),
+          }}
+        >
+          {/* this div is for loading / sizing */}
+          <div
+            ref={div => {
+              this.imgDiv = div
+            }}
+            style={{
+              backgroundImage: this.state.imageLoaded
+                ? 'none'
+                : `url(${this.props.data.base64})`,
+              backgroundSize: 'contain',
+              paddingBottom: this.state.imagePaddingBottom,
+              position: 'relative',
+              filter: this.state.imageLoaded ? 'none' : 'blur(20px)',
+              transition: 'filter .4s ease-out',
+            }}
+          >
+            {/* this img is for loading the image */}
+            {this.state.beginImageLoad ? (
+              <img
+                src={this.state.imageURL}
+                alt=""
+                style={{ display: 'none' }}
+                onLoad={this.onImageLoad}
+              />
+            ) : null}
+            {/* this div is for the actual image */}
+            <div
+              style={{
+                position: 'absolute',
+                top: 0,
+                bottom: 0,
+                right: 0,
+                left: 0,
+                backgroundImage: this.state.imageLoaded
+                  ? `url(${this.state.imageURL})`
+                  : 'none',
+                backgroundSize: 'contain',
+                backgroundRepeat: 'no-repeat',
+              }}
+            />
+          </div>
+        </div>
+        <span>
+          <span
+            style={{
+              color: typography.options.headerColor,
+            }}
+          >
+            {this.props.data.originalName.split('.')[0]}
+          </span>
+        </span>
+      </div>
+    )
+  }
+}
+Image.propTypes = { data: PropTypes.shape(imageType).isRequired }
+
+const Images = ({ data }) => (
+  <div>
+    {data.map(image => (
+      <VerticalMargin key={image.originalName} bottom={rhythm(3)}>
+        <Image data={image} />
+      </VerticalMargin>
+    ))}
+  </div>
+)
+Images.propTypes = {
+  data: PropTypes.arrayOf(PropTypes.shape(imageType)).isRequired,
+}
+
+const IndexPage = ({ data }) => {
+  const images = data.allImageSharp.edges.map(e => e.node.image)
+  return (
+    <Container maxWidth={810}>
+      <Container maxWidth={512}>
+        <VerticalMargin top={rhythm(6)}>
+          <Header />
+        </VerticalMargin>
+        <VerticalMargin top={rhythm(0.5)}>
+          <About />
+        </VerticalMargin>
+      </Container>
+      <VerticalMargin top={rhythm(1.5)}>
+        <Images data={images} />
+      </VerticalMargin>
+    </Container>
+  )
+}
+IndexPage.propTypes = {
+  data: PropTypes.shape({
+    allImageSharp: PropTypes.shape({ edges: PropTypes.array }),
+  }).isRequired,
+}
+
+export default IndexPage
+
+export const indexQuery = graphql`
+  query IndexQuery {
+    allImageSharp {
+      edges {
+        node {
+          ... on ImageSharp {
+            image: responsiveResolution(quality: 100) {
+              base64
+              width
+              height
+              srcSet
+              originalName
+              aspectRatio
+            }
+          }
+        }
+      }
+    }
+  }
+`

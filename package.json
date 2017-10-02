@@ -4,14 +4,20 @@
   "version": "1.0.0",
   "author": "Kabir Goel",
   "dependencies": {
+    "css-prop-type": "^1.0.0",
     "gatsby": "^1.9.42",
     "gatsby-link": "^1.6.15",
     "gatsby-plugin-google-analytics": "^1.0.7",
     "gatsby-plugin-react-helmet": "^1.0.5",
+    "gatsby-plugin-sharp": "^1.6.8",
     "gatsby-plugin-typography": "^1.7.9",
+    "gatsby-source-filesystem": "^1.5.1",
+    "gatsby-transformer-sharp": "^1.6.7",
+    "lodash": "^4.17.4",
     "prop-types": "^15.6.0",
     "react": "^16.0.0",
-    "react-helmet": "^5.2.0"
+    "react-helmet": "^5.2.0",
+    "react-waypoint": "^7.1.0"
   },
   "keywords": [
     "gatsby"
