@@ -44,7 +44,7 @@ class Image extends React.Component {
     super(props)
     this.state = {
       imagePaddingBottom: 0,
-      imageURL: _.last(this.props.data.srcSet.split('\n')).split(' ')[0],
+      imageURL: this.props.data.src,
       imageLoaded: false,
       beginImageLoad: false,
     }
@@ -136,15 +136,6 @@ class Image extends React.Component {
             />
           </div>
         </div>
-        <span>
-          <span
-            style={{
-              color: typography.options.headerColor,
-            }}
-          >
-            {this.props.data.originalName.split('.')[0]}
-          </span>
-        </span>
       </div>
     )
   }
@@ -167,7 +158,7 @@ Images.propTypes = {
 const IndexPage = ({ data }) => {
   const images = data.allImageSharp.edges.map(e => e.node.image)
   return (
-    <Container maxWidth={810}>
+    <Container>
       <Container maxWidth={512}>
         <VerticalMargin top={rhythm(6)}>
           <Header />
@@ -179,6 +170,7 @@ const IndexPage = ({ data }) => {
       <VerticalMargin top={rhythm(1.5)}>
         <Images data={images} />
       </VerticalMargin>
+      <p>That&#8217;s all for now.</p>
     </Container>
   )
 }
@@ -196,12 +188,9 @@ export const indexQuery = graphql`
       edges {
         node {
           ... on ImageSharp {
-            image: responsiveResolution(quality: 100) {
+            image: responsiveSizes(quality: 100) {
               base64
-              width
-              height
-              srcSet
-              originalName
+              src
               aspectRatio
             }
           }
