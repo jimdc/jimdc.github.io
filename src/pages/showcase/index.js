@@ -44,7 +44,6 @@ class Image extends React.Component {
     super(props)
     this.state = {
       imagePaddingBottom: 0,
-      imageURL: this.props.data.src,
       imageLoaded: false,
       beginImageLoad: false,
     }
@@ -113,7 +112,7 @@ class Image extends React.Component {
             {/* this img is for loading the image */}
             {this.state.beginImageLoad ? (
               <img
-                src={this.state.imageURL}
+                src={this.props.data.src}
                 alt=""
                 style={{ display: 'none' }}
                 onLoad={this.onImageLoad}
@@ -128,7 +127,7 @@ class Image extends React.Component {
                 right: 0,
                 left: 0,
                 backgroundImage: this.state.imageLoaded
-                  ? `url(${this.state.imageURL})`
+                  ? `url(${this.props.data.src})`
                   : 'none',
                 backgroundSize: 'contain',
                 backgroundRepeat: 'no-repeat',
