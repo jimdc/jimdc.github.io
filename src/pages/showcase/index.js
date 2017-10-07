@@ -188,7 +188,7 @@ export const indexQuery = graphql`
       edges {
         node {
           ... on ImageSharp {
-            image: responsiveSizes(quality: 100) {
+            image: responsiveSizes(quality: 100, toFormat: WEBP) {
               base64
               src
               aspectRatio
