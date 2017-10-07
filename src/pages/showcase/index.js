@@ -85,6 +85,15 @@ class Image extends React.Component {
     return (
       <div>
         <Waypoint onEnter={this.beginImageLoad} />
+        {/* this img is for loading the image */}
+        {this.state.beginImageLoad ? (
+          <img
+            src={this.props.data.src}
+            alt=""
+            style={{ display: 'none' }}
+            onLoad={this.onImageLoad}
+          />
+        ) : null}
         {/* this div is for defined edges with blur */}
         <div
           style={{
@@ -109,15 +118,6 @@ class Image extends React.Component {
               transition: 'filter .4s ease-out',
             }}
           >
-            {/* this img is for loading the image */}
-            {this.state.beginImageLoad ? (
-              <img
-                src={this.props.data.src}
-                alt=""
-                style={{ display: 'none' }}
-                onLoad={this.onImageLoad}
-              />
-            ) : null}
             {/* this div is for the actual image */}
             <div
               style={{
