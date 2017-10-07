@@ -145,7 +145,7 @@ Image.propTypes = { data: PropTypes.shape(imageType).isRequired }
 const Images = ({ data }) => (
   <div>
     {data.map(image => (
-      <VerticalMargin key={image.originalName} bottom={rhythm(3)}>
+      <VerticalMargin key={image.originalImg} bottom={rhythm(3)}>
         <Image data={image} />
       </VerticalMargin>
     ))}
@@ -192,6 +192,7 @@ export const indexQuery = graphql`
               base64
               src
               aspectRatio
+              originalImg
             }
           }
         }
