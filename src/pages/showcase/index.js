@@ -25,7 +25,7 @@ const About = () => (
   <div>
     <p style={{ margin: 0 }}>
       A gallery of my best shots. {' '}
-      <span style={{ color: '#888' }}>© {new Date().getFullYear()}</span>
+      <span style={{ color: '#555' }}>© {new Date().getFullYear()}</span>
     </p>
   </div>
 )
@@ -48,7 +48,6 @@ class Image extends React.Component {
       beginImageLoad: false,
     }
     this.onImageLoad = this.onImageLoad.bind(this)
-    this.beginImageLoad = this.beginImageLoad.bind(this)
     this.calculatePadding = _.debounce(this.calculatePadding.bind(this), 100, {
       leading: true,
     })
@@ -69,12 +68,6 @@ class Image extends React.Component {
     })
   }
 
-  beginImageLoad() {
-    this.setState({
-      beginImageLoad: true,
-    })
-  }
-
   calculatePadding() {
     this.setState({
       imagePaddingBottom: this.imgDiv.clientWidth / this.props.data.aspectRatio,
@@ -84,7 +77,7 @@ class Image extends React.Component {
   render() {
     return (
       <div>
-        <Waypoint onEnter={this.beginImageLoad} />
+        <Waypoint onEnter={() => this.setState({ beginImageLoad: true })} />
         {/* this img is for loading the image */}
         {this.state.beginImageLoad ? (
           <img
@@ -108,14 +101,13 @@ class Image extends React.Component {
               this.imgDiv = div
             }}
             style={{
-              backgroundImage: this.state.imageLoaded
-                ? 'none'
-                : `url(${this.props.data.base64})`,
+              backgroundImage: `url(${this.props.data.base64})`,
               backgroundSize: 'contain',
+              backgroundRepeat: 'no-repeat',
               paddingBottom: this.state.imagePaddingBottom,
               position: 'relative',
               filter: this.state.imageLoaded ? 'none' : 'blur(20px)',
-              transition: 'filter .4s ease-out',
+              transition: 'filter .4s',
             }}
           >
             {/* this div is for the actual image */}
@@ -131,6 +123,8 @@ class Image extends React.Component {
                   : 'none',
                 backgroundSize: 'contain',
                 backgroundRepeat: 'no-repeat',
+                opacity: this.state.imageLoaded ? '1' : '0',
+                transition: 'opacity .4s',
               }}
             />
           </div>
@@ -187,7 +181,7 @@ export const indexQuery = graphql`
       edges {
         node {
           ... on ImageSharp {
-            image: responsiveSizes(quality: 100, toFormat: WEBP) {
+            image: responsiveSizes(quality: 100, toFormat: JPG) {
               base64
               src
               aspectRatio
