@@ -14,9 +14,6 @@ const TemplateWrapper = ({ children }) => (
 
 TemplateWrapper.propTypes = {
   children: PropTypes.func,
-  location: PropTypes.shape({
-    pathname: PropTypes.string,
-  }).isRequired,
 }
 
 TemplateWrapper.defaultProps = {
