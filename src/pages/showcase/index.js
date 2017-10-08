@@ -108,6 +108,7 @@ class Image extends React.Component {
               position: 'relative',
               filter: this.state.imageLoaded ? 'none' : 'blur(20px)',
               transition: 'filter .4s',
+              transform: 'translate3d(0, 0, 0)',
             }}
           >
             {/* this div is for the actual image */}
