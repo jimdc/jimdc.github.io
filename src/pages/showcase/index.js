@@ -87,48 +87,35 @@ class Image extends React.Component {
             onLoad={this.onImageLoad}
           />
         ) : null}
-        {/* this div is for defined edges with blur */}
+        {/* this div is for loading animation + sizing */}
         <div
+          ref={div => {
+            this.imgDiv = div
+          }}
           style={{
-            transform: 'translate3d(0, 0, 0)',
-            overflow: 'hidden',
+            backgroundColor: '#ddd',
+            paddingBottom: this.state.imagePaddingBottom,
+            position: 'relative',
             marginBottom: rhythm(1),
           }}
         >
-          {/* this div is for loading / sizing */}
+          {/* this div is for the actual image */}
           <div
-            ref={div => {
-              this.imgDiv = div
-            }}
             style={{
-              backgroundImage: `url(${this.props.data.base64})`,
+              position: 'absolute',
+              top: 0,
+              bottom: 0,
+              right: 0,
+              left: 0,
+              backgroundImage: this.state.imageLoaded
+                ? `url(${this.props.data.src})`
+                : 'none',
               backgroundSize: 'contain',
               backgroundRepeat: 'no-repeat',
-              paddingBottom: this.state.imagePaddingBottom,
-              position: 'relative',
-              filter: this.state.imageLoaded ? 'none' : 'blur(20px)',
-              transition: 'filter .4s',
-              transform: 'translate3d(0, 0, 0)',
+              opacity: this.state.imageLoaded ? '1' : '0',
+              transition: 'opacity .4s',
             }}
-          >
-            {/* this div is for the actual image */}
-            <div
-              style={{
-                position: 'absolute',
-                top: 0,
-                bottom: 0,
-                right: 0,
-                left: 0,
-                backgroundImage: this.state.imageLoaded
-                  ? `url(${this.props.data.src})`
-                  : 'none',
-                backgroundSize: 'contain',
-                backgroundRepeat: 'no-repeat',
-                opacity: this.state.imageLoaded ? '1' : '0',
-                transition: 'opacity .4s',
-              }}
-            />
-          </div>
+          />
         </div>
       </div>
     )
