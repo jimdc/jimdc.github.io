@@ -3,6 +3,7 @@ import Link from 'gatsby-link'
 import PropTypes from 'prop-types'
 import _ from 'lodash'
 import Waypoint from 'react-waypoint'
+import Grid from 'react-css-grid'
 
 import VerticalMargin from '../../components/VerticalMargin'
 import Container from '../../components/Container'
@@ -10,7 +11,7 @@ import typography from '../../utils/typography'
 
 const { rhythm } = typography
 
-const Header = () => (
+const Title = () => (
   <h1 style={{ margin: 0 }}>
     <Link to="/">
       Kabir Goel{' '}
@@ -28,6 +29,15 @@ const About = () => (
       <span style={{ color: '#555' }}>© {new Date().getFullYear()}</span>
     </p>
   </div>
+)
+
+const Header = () => (
+  <header>
+    <Title />
+    <VerticalMargin top={rhythm(0.5)}>
+      <About />
+    </VerticalMargin>
+  </header>
 )
 
 const imageType = {
@@ -76,7 +86,9 @@ class Image extends React.Component {
 
   render() {
     return (
-      <div>
+      <section
+        style={{ display: 'inline-block', width: '100%', margin: '0.25rem' }}
+      >
         <Waypoint onEnter={() => this.setState({ beginImageLoad: true })} />
         {/* this img is for loading the image */}
         {this.state.beginImageLoad ? (
@@ -117,20 +129,20 @@ class Image extends React.Component {
             }}
           />
         </div>
-      </div>
+      </section>
     )
   }
 }
 Image.propTypes = { data: PropTypes.shape(imageType).isRequired }
 
 const Images = ({ data }) => (
-  <div>
+  <Grid gap={16} align="end">
     {data.map(image => (
       <VerticalMargin key={image.originalImg} bottom={rhythm(3)}>
         <Image data={image} />
       </VerticalMargin>
     ))}
-  </div>
+  </Grid>
 )
 Images.propTypes = {
   data: PropTypes.arrayOf(PropTypes.shape(imageType)).isRequired,
@@ -139,20 +151,17 @@ Images.propTypes = {
 const IndexPage = ({ data }) => {
   const images = data.allImageSharp.edges.map(e => e.node.image)
   return (
-    <Container>
-      <Container maxWidth={512}>
-        <VerticalMargin top={rhythm(6)}>
+    <VerticalMargin top={rhythm(6)}>
+      <Container>
+        <Container maxWidth={512}>
           <Header />
+        </Container>
+        <VerticalMargin top={rhythm(1.5)}>
+          <Images data={images} />
         </VerticalMargin>
-        <VerticalMargin top={rhythm(0.5)}>
-          <About />
-        </VerticalMargin>
+        <footer>That&#8217;s all for now.</footer>
       </Container>
-      <VerticalMargin top={rhythm(1.5)}>
-        <Images data={images} />
-      </VerticalMargin>
-      <p>That&#8217;s all for now.</p>
-    </Container>
+    </VerticalMargin>
   )
 }
 IndexPage.propTypes = {
