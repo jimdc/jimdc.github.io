@@ -3,7 +3,6 @@ import Link from 'gatsby-link'
 import PropTypes from 'prop-types'
 import _ from 'lodash'
 import Waypoint from 'react-waypoint'
-import Grid from 'react-css-grid'
 
 import VerticalMargin from '../../components/VerticalMargin'
 import Container from '../../components/Container'
@@ -41,7 +40,6 @@ const Header = () => (
 )
 
 const imageType = {
-  base64: PropTypes.string,
   width: PropTypes.number,
   height: PropTypes.number,
   srcSet: PropTypes.string,
@@ -86,9 +84,7 @@ class Image extends React.Component {
 
   render() {
     return (
-      <section
-        style={{ display: 'inline-block', width: '100%', margin: '0.25rem' }}
-      >
+      <section>
         <Waypoint onEnter={() => this.setState({ beginImageLoad: true })} />
         {/* this img is for loading the image */}
         {this.state.beginImageLoad ? (
@@ -136,13 +132,13 @@ class Image extends React.Component {
 Image.propTypes = { data: PropTypes.shape(imageType).isRequired }
 
 const Images = ({ data }) => (
-  <Grid gap={16} align="end">
+  <div>
     {data.map(image => (
       <VerticalMargin key={image.originalImg} bottom={rhythm(3)}>
         <Image data={image} />
       </VerticalMargin>
     ))}
-  </Grid>
+  </div>
 )
 Images.propTypes = {
   data: PropTypes.arrayOf(PropTypes.shape(imageType)).isRequired,
@@ -179,7 +175,6 @@ export const indexQuery = graphql`
         node {
           ... on ImageSharp {
             image: responsiveSizes(quality: 100, toFormat: JPG) {
-              base64
               src
               aspectRatio
               originalImg
