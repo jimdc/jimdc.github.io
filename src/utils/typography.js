@@ -22,9 +22,9 @@ const typography = new Typography({
       styles: ['400', '400i', '700', '700i'],
     },
   ],
-  headerColor: '#000',
+  headerColor: '#373d3f',
   headerFontFamily: fontStack,
-  bodyColor: '#434343',
+  bodyColor: '#373d3f',
   bodyFontFamily: fontStack,
 })
 

@@ -2,6 +2,7 @@ import React from 'react'
 import Link from 'gatsby-link'
 
 import VerticalMargin from '../components/VerticalMargin'
+import Padding from '../components/Padding'
 import Container from '../components/Container'
 import FontAwesome from '../components/FontAwesome'
 import splash from './splash.jpg'
@@ -28,7 +29,7 @@ function isToday(date, _today) {
 }
 
 const Header = () => (
-  <h1>
+  <h1 style={{ marginBottom: 0 }}>
     <Link to="/">
       Kabir Goel{' '}
       <span style={{ fontWeight: 'lighter' }}>
@@ -40,7 +41,13 @@ const Header = () => (
 
 const Splash = () => (
   <img
-    style={{ margin: 0, width: '100%', height: 'auto' }}
+    style={{
+      margin: 0,
+      width: '100%',
+      height: 'auto',
+      borderRadius: 2,
+      boxShadow: '0 1px 4px -1px rgba(0, 0, 0, 0.1)',
+    }}
     src={splash}
     alt=""
   />
@@ -64,12 +71,12 @@ const socialMediaInfo = Object.keys(metadata.socialMedia).map(key => {
 })
 
 const Social = () => {
-  const socialIcons = socialMediaInfo.map(info => (
+  const socialIcons = socialMediaInfo.map((info, index) => (
     <li
       key={info.name}
       style={{
         display: 'inline-block',
-        marginRight: '10px',
+        marginRight: index != socialMediaInfo.length - 1 ? '10px' : '0',
       }}
     >
       <a href={info.url}>
@@ -91,29 +98,20 @@ const Social = () => {
   )
 }
 
-const Bar = () => (
-  <div
-    style={{
-      width: 100,
-      height: 1,
-      backgroundColor: typography.options.bodyColor,
-    }}
-  />
-)
-
 const IndexPage = () => (
   <Container maxWidth={512}>
     <VerticalMargin top={rhythm(6)}>
-      <Header />
+      <Splash />
     </VerticalMargin>
-    <Splash />
-    <VerticalMargin top={rhythm(1)}>
-      <About />
-    </VerticalMargin>
-    <Social />
-    <VerticalMargin top={rhythm(1.5)}>
-      <Bar />
-    </VerticalMargin>
+    <Padding all={10} left={'1vw'} right={'1vw'}>
+      <VerticalMargin top={rhythm(1)}>
+        <Header />
+      </VerticalMargin>
+      <VerticalMargin top={rhythm(0.5)}>
+        <About />
+      </VerticalMargin>
+      <Social />
+    </Padding>
   </Container>
 )
 

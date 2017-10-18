@@ -105,6 +105,7 @@ class Image extends React.Component {
             paddingBottom: this.state.imagePaddingBottom,
             position: 'relative',
             marginBottom: rhythm(1),
+            borderRadius: 2,
           }}
         >
           {/* this div is for the actual image */}
@@ -122,6 +123,8 @@ class Image extends React.Component {
               backgroundRepeat: 'no-repeat',
               opacity: this.state.imageLoaded ? '1' : '0',
               transition: 'opacity .4s',
+              borderRadius: 2,
+              boxShadow: '0 1px 4px -1px rgba(0, 0, 0, 0.1)',
             }}
           />
         </div>
