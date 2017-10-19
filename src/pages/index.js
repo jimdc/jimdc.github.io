@@ -76,7 +76,7 @@ const Social = () => {
       key={info.name}
       style={{
         display: 'inline-block',
-        marginRight: index != socialMediaInfo.length - 1 ? '10px' : '0',
+        marginRight: index !== socialMediaInfo.length - 1 ? '15px' : '0',
       }}
     >
       <a href={info.url}>
