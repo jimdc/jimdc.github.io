@@ -3,9 +3,10 @@ import Link from 'gatsby-link'
 
 import { rhythm } from '../utils/typography'
 import VerticalMargin from '../components/VerticalMargin'
+import Container from '../components/Container'
 
 const NotFoundPage = () => (
-  <div>
+  <Container>
     <VerticalMargin top={rhythm(6)}>
       <h1 style={{ margin: 0 }}>
         <Link to="/">
@@ -13,7 +14,7 @@ const NotFoundPage = () => (
         </Link>
       </h1>
     </VerticalMargin>
-  </div>
+  </Container>
 )
 
 export default NotFoundPage
