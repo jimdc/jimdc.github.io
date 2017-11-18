@@ -5,6 +5,7 @@ import VerticalMargin from '../components/VerticalMargin'
 import Padding from '../components/Padding'
 import Container from '../components/Container'
 import FontAwesome from '../components/FontAwesome'
+import { Image } from '../components/Image'
 import splash from './splash.jpg'
 import metadata from '../../metadata'
 import typography from '../utils/typography'
@@ -40,16 +41,11 @@ const Header = () => (
 )
 
 const Splash = () => (
-  <img
-    style={{
-      margin: 0,
-      width: '100%',
-      height: 'auto',
-      borderRadius: 2,
-      boxShadow: '0 1px 4px -1px rgba(0, 0, 0, 0.1)',
+  <Image
+    data={{
+      src: splash,
+      aspectRatio: 1.332231405,
     }}
-    src={splash}
-    alt=""
   />
 )
 
