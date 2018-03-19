@@ -99,7 +99,7 @@ const IndexPage = () => (
     <VerticalMargin top={rhythm(6)}>
       <Splash />
     </VerticalMargin>
-    <Padding all={10} left={'1vw'} right={'1vw'}>
+    <Padding all={10} left="1vw" right="1vw">
       <VerticalMargin top={rhythm(1)}>
         <Header />
       </VerticalMargin>

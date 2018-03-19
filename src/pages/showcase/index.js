@@ -24,7 +24,7 @@ const Title = () => (
 const About = () => (
   <div>
     <p style={{ margin: 0 }}>
-      A gallery of my best shots. {' '}
+      A gallery of my best shots.{' '}
       <span style={{ color: '#555' }}>© {new Date().getFullYear()}</span>
     </p>
   </div>
@@ -55,7 +55,7 @@ Images.propTypes = {
 const IndexPage = ({ data }) => {
   const images = data.allImageSharp.edges.map(e => e.node.image)
   return (
-    <VerticalMargin top={rhythm(6)}>
+    <VerticalMargin top={rhythm(6)} bottom={rhythm(6)}>
       <Container>
         <Container maxWidth={512}>
           <Header />
@@ -63,7 +63,16 @@ const IndexPage = ({ data }) => {
         <VerticalMargin top={rhythm(1.5)}>
           <Images data={images} />
         </VerticalMargin>
-        <footer>That&#8217;s all for now.</footer>
+        <footer
+          style={{
+            textAlign: 'center',
+            textTransform: 'uppercase',
+            letterSpacing: 1,
+            color: 'grey',
+          }}
+        >
+          Fin.
+        </footer>
       </Container>
     </VerticalMargin>
   )
@@ -82,7 +91,7 @@ export const indexQuery = graphql`
       edges {
         node {
           ... on ImageSharp {
-            image: responsiveSizes(quality: 100, toFormat: JPG) {
+            image: responsiveSizes(quality: 100) {
               src
               aspectRatio
               originalImg
