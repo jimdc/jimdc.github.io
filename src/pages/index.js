@@ -15,7 +15,7 @@ const { rhythm } = typography
 const Header = () => (
   <h1 style={{ marginBottom: 0 }}>
     <Link to="/">
-      Kabir Goel{' '}
+      James Carroll{' '}
       <span style={{ fontWeight: 'lighter' }}>
         &mdash; Android &amp; web developer.
       </span>
