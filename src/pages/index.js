@@ -12,49 +12,30 @@ import typography from '../utils/typography'
 
 const { rhythm } = typography
 
-const birthday = new Date(1016908200000)
-function isToday(date, _today) {
-  let today = _today
-  if (today === undefined) {
-    today = new Date()
-  }
-  let res = false
-  const m = today.getMonth() - date.getMonth()
-  if (m === 0) {
-    const d = today.getDate() - date.getDate()
-    if (d === 0) {
-      res = true
-    }
-  }
-  return res
-}
-
 const Header = () => (
   <h1 style={{ marginBottom: 0 }}>
     <Link to="/">
       Kabir Goel{' '}
       <span style={{ fontWeight: 'lighter' }}>
-        &mdash; designer &amp; developer. {isToday(birthday) ? '🎉' : ''}
+        &mdash; Android &amp; web developer.
       </span>
     </Link>
   </h1>
 )
 
 const Splash = () => (
-  <Image
+  <div></div>
+  /*<Image
     data={{
       src: splash,
       aspectRatio: 1.332231405,
     }}
-  />
+  />*/
 )
 
 const About = () => (
   <p>
-    Find me on VSCO or Medium, or take a look at<br />
-    <Link to="/showcase" className="link--styled">
-      the design &amp; photography showcase
-    </Link>. 🌝
+    Find me on GitHub or Twitter, or reach out via email.
   </p>
 )
 

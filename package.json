@@ -1,8 +1,8 @@
 {
-  "name": "website",
-  "description": "Kabir's website",
+  "name": "portfolio",
+  "description": "James's website",
   "version": "1.0.0",
-  "author": "Kabir Goel",
+  "author": "James Carroll",
   "dependencies": {
     "css-prop-type": "^1.0.0",
     "gatsby": "^1.9.127",
@@ -42,5 +42,5 @@
     "gh-pages": "^1.1.0",
     "prettier": "^1.8.2"
   },
-  "repository": "https://github.com/kbrgl/kbrgl.github.io.git"
+  "repository": "https://github.com/jimdc/portfolio.git"
 }
