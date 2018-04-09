@@ -1,0 +1,2 @@
+webpackJsonp([57552020475521],{370:function(a,e){a.exports={data:{allImageSharp:{edges:[{node:{image:{src:"/static/Torii-7956fe955adf81f7d1e722046a49fa94-1eede.jpg",aspectRatio:1.6,originalImg:"/static/Torii-7956fe955adf81f7d1e722046a49fa94-411ea.jpg"}}}]}},pathContext:{}}}});
+//# sourceMappingURL=path---showcase-e4593e90b2e4a816a39c.js.map
